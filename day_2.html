@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Sederhana</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #calculator {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 8px;
+            max-width: 300px;
+            margin-top: 20px;
+        }
+
+        #output {
+            grid-column: span 4;
+            text-align: right;
+            padding: 10px;
+            font-size: 20px;
+        }
+
+        button {
+            padding: 15px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        #clear {
+            grid-column: span 2;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="output">
+        <input type="text" readonly>
+    </div>
+
+    <div id="calculator">
+        <button onclick="appendToOutput('7')">7</button>
+        <button onclick="appendToOutput('8')">8</button>
+        <button onclick="appendToOutput('9')">9</button>
+        <button onclick="appendToOutput('/')">/</button>
+
+        <button onclick="appendToOutput('4')">4</button>
+        <button onclick="appendToOutput('5')">5</button>
+        <button onclick="appendToOutput('6')">6</button>
+        <button onclick="appendToOutput('*')">*</button>
+
+        <button onclick="appendToOutput('1')">1</button>
+        <button onclick="appendToOutput('2')">2</button>
+        <button onclick="appendToOutput('3')">3</button>
+        <button onclick="appendToOutput('-')">-</button>
+
+        <button id="clear" onclick="clearOutput()">C</button>
+        <button onclick="appendToOutput('0')">0</button>
+        <button onclick="appendToOutput('+')">+</button>
+        <button onclick="appendToOutput('.')">.</button>
+        <button onclick="calculate()">=</button>
+    </div>
+
+    <script>
+        function appendToOutput(value) {
+            document.querySelector('#output input').value += value;
+        }
+
+        function clearOutput() {
+            document.querySelector('#output input').value = '';
+        }
+
+        function calculate() {
+            try {
+                document.querySelector('#output input').value = eval(document.querySelector('#output input').value);
+            } catch (error) {
+                document.querySelector('#output input').value = 'Error';
+            }
+        }
+    </script>
+
+</body>
+</html>
